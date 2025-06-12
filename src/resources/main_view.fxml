@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="resources.MainController">
+    <top>
+        <Label text="Hybrid Social Network (DSA CCP Project)" style="-fx-font-size: 20; -fx-padding: 10px;"/>
+    </top>
+    <center>
+        <VBox spacing="10" alignment="CENTER" style="-fx-padding: 20;">
+            <HBox spacing="10">
+                <TextField fx:id="userCountField" promptText="Number of users"/>
+                <Button text="Initialize" onAction="#initializeNetwork"/>
+            </HBox>
+
+            <HBox spacing="10">
+                <TextField fx:id="fromUserField" promptText="From User ID"/>
+                <TextField fx:id="toUserField" promptText="To User ID"/>
+                <Button text="Send Request" onAction="#sendRequest"/>
+                <Button text="Add Friend to Graph" onAction="#addFriendToGraph"/>
+            </HBox>
+
+            <HBox spacing="10">
+                <TextField fx:id="acceptUserField" promptText="User to Accept Request"/>
+                <Button text="Accept Request" onAction="#acceptRequest"/>
+            </HBox>
+
+            <HBox spacing="10">
+                <TextField fx:id="suggestUserField" promptText="User ID to Build Tree"/>
+                <Button text="Build Suggestion Tree" onAction="#buildSuggestionTree"/>
+                <Button text="Print Suggestion Tree" onAction="#printSuggestionTree"/>
+            </HBox>
+
+            <HBox spacing="10">
+                <TextField fx:id="lcaAField" promptText="User A"/>
+                <TextField fx:id="lcaBField" promptText="User B"/>
+                <Button text="Find LCA" onAction="#findLCA"/>
+            </HBox>
+
+            <HBox spacing="10">
+                <TextField fx:id="shortPathAField" promptText="From"/>
+                <TextField fx:id="shortPathBField" promptText="To"/>
+                <Button text="Shortest Path" onAction="#shortestPath"/>
+            </HBox>
+
+            <HBox spacing="10">
+                <TextField fx:id="removeUserField" promptText="User ID to Remove"/>
+                <Button text="Remove User" onAction="#removeUser"/>
+            </HBox>
+
+            <TextArea fx:id="outputArea" prefHeight="200" wrapText="true"/>
+        </VBox>
+    </center>
+</BorderPane>
