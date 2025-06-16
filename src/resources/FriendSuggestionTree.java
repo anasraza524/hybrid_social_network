@@ -35,12 +35,16 @@ public class FriendSuggestionTree {
 
         while (!queue.isEmpty()) {
             TreeNode current = queue.poll();
-            sb.append(current.userId).append(" "); // ✅ fixed field
+            sb.append(current.userId).append(" ");
             if (current.left != null) queue.add(current.left);
             if (current.right != null) queue.add(current.right);
         }
 
         return sb.toString();
+    }
+
+    public void clear() {
+        root = null; // Reset the tree by setting root to null
     }
 
     public TreeNode getRoot() {

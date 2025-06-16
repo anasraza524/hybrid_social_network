@@ -25,6 +25,64 @@ public class NetworkGraph {
         }
         adjList.remove(id);
     }
+   public String getVisualGraphAsString() {
+    StringBuilder sb = new StringBuilder();
+
+    sb.append("🔗 Virtual Graph View:\n");
+    for (int user : adjList.keySet()) {
+        sb.append("User ").append(user).append(" → ");
+        for (int friend : adjList.get(user)) {
+            sb.append(friend).append("  ");
+        }
+        sb.append("\n");
+    }
+
+    sb.append("\n📌 Structure Preview (tree style):\n");
+
+    // Dynamic visualization using BFS (like tree)
+    Set<Integer> visited = new HashSet<>();
+    Queue<Integer> queue = new LinkedList<>();
+    Map<Integer, Integer> levelMap = new HashMap<>();
+
+    if (adjList.isEmpty()) {
+        sb.append("Empty graph.\n");
+        return sb.toString();
+    }
+
+    int root = adjList.keySet().iterator().next();  // start from any node
+    queue.offer(root);
+    visited.add(root);
+    levelMap.put(root, 0);
+
+    Map<Integer, List<Integer>> levels = new TreeMap<>();
+    while (!queue.isEmpty()) {
+        int current = queue.poll();
+        int level = levelMap.get(current);
+
+        levels.putIfAbsent(level, new ArrayList<>());
+        levels.get(level).add(current);
+
+        for (int neighbor : adjList.get(current)) {
+            if (!visited.contains(neighbor)) {
+                queue.offer(neighbor);
+                visited.add(neighbor);
+                levelMap.put(neighbor, level + 1);
+            }
+        }
+    }
+
+    // Print levels (like tree layers)
+    for (int lvl : levels.keySet()) {
+        sb.append("Level ").append(lvl).append(": ");
+        for (int node : levels.get(lvl)) {
+            sb.append(node).append(" ");
+        }
+        sb.append("\n");
+    }
+
+    return sb.toString();
+}
+
 
     public int shortestPath(int start, int end) {
         Queue<Integer> queue = new LinkedList<>();
